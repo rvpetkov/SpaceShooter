@@ -1,11 +1,19 @@
+import { BackgroundGraphic } from "../graphics/BackgroundGraphic";
+
 class Main extends Phaser.Scene {
+    private background: BackgroundGraphic;
+
     constructor() {
         super("main");
     }
 
     create() {
-        let text: Phaser.GameObjects.Text = this.add.text(100, 100, "GAME should be here!");
-        text.setFontSize(36);
+        this.background = new BackgroundGraphic(this);
+        this.add.existing(this.background);
+    }
+
+    update() {
+        this.background.update();
     }
 }
 
