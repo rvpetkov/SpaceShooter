@@ -1,6 +1,4 @@
-import { EnemyCone } from "../actors/enemies/EnemyCone";
-import { EnemySphere } from "../actors/enemies/EnemySphere";
-import { EnemyStarknife } from "../actors/enemies/EnemyStarknife";
+import { EnemySpawner } from "../actors/enemies/EnemySpawner";
 import { Player } from "../actors/Player";
 import { GameApp } from "../GameApp";
 import { BackgroundGraphic } from "../graphics/BackgroundGraphic";
@@ -11,10 +9,7 @@ class Main extends Phaser.Scene {
     private foreground: ForegroundGraphic;
 
     private player: Player;
-
-    private enemy1: EnemyCone;
-    private enemy2: EnemySphere;
-    private enemy3: EnemyStarknife;
+    private enemySpawner: EnemySpawner;
 
     constructor() {
         super("main");
@@ -34,17 +29,8 @@ class Main extends Phaser.Scene {
         this.player = new Player(this, 60, <number>(GameApp.gameConfig.height) / 2);
         this.add.existing(this.player);
 
-        this.enemy1 = new EnemyCone(this, 900, 100);
-        this.enemy1.startAttacking();
-        this.add.existing(this.enemy1);
-
-        this.enemy2 = new EnemySphere(this, 900, 200);
-        this.enemy2.startAttacking();
-        this.add.existing(this.enemy2);
-
-        this.enemy3 = new EnemyStarknife(this, 900, 300);
-        this.enemy3.startAttacking();
-        this.add.existing(this.enemy3);
+        this.enemySpawner = new EnemySpawner(this);
+        this.add.existing(this.enemySpawner);
     }
 
     update(time: number, delta: number) {
@@ -52,6 +38,7 @@ class Main extends Phaser.Scene {
         this.foreground.update();
 
         this.player.update(time, delta);
+        this.enemySpawner.update();
     }
 }
 
