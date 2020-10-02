@@ -1,4 +1,4 @@
-abstract class BaseActor extends Phaser.GameObjects.Sprite {
+abstract class BaseActor extends Phaser.Physics.Arcade.Sprite {
     protected hitPoints: number;
     protected movementSpeed: number;
 
@@ -7,6 +7,8 @@ abstract class BaseActor extends Phaser.GameObjects.Sprite {
 
         this.hitPoints = hp;
         this.movementSpeed = speed;
+
+        this.scene.physics.add.existing(this);
     }
 
     public get isAlive(): boolean {
