@@ -38,7 +38,7 @@ class EnemySphere extends Enemy {
         if (this.movementTween == null) {
             this.movementTween = this.scene.tweens.add({
                 targets: this,
-                x: -100,
+                x: "-=1300",
                 ease: Phaser.Math.Easing.Linear.Linear,
                 duration: 10000,
                 paused: true,
