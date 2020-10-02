@@ -1,3 +1,4 @@
+import { EnemyCone } from "../actors/enemies/EnemyCone";
 import { Player } from "../actors/Player";
 import { GameApp } from "../GameApp";
 import { BackgroundGraphic } from "../graphics/BackgroundGraphic";
@@ -8,6 +9,8 @@ class Main extends Phaser.Scene {
     private foreground: ForegroundGraphic;
 
     private player: Player;
+
+    private enemy1: EnemyCone;
 
     constructor() {
         super("main");
@@ -22,6 +25,10 @@ class Main extends Phaser.Scene {
 
         this.player = new Player(this, 60, <number>(GameApp.gameConfig.height) / 2);
         this.add.existing(this.player);
+
+        this.enemy1 = new EnemyCone(this, 900, 100);
+        this.enemy1.startAttacking();
+        this.add.existing(this.enemy1);
     }
 
     update(time: number, delta: number) {
