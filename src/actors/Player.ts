@@ -14,9 +14,16 @@ class Player extends BaseActor {
         this.movementSpeed = this.baseSpeed;
         this.hitPoints = this.baseHP;
 
+        this.scene.textures.addSpriteSheetFromAtlas("player", {
+            frameWidth: 64,
+            frameHeight: 64,
+            atlas: "spaceShooter",
+            frame: "ship_player"
+        });
+
         this.scene.anims.create({
             key: "player_idle",
-            frames: this.scene.anims.generateFrameNames("ship_player"),
+            frames: this.scene.anims.generateFrameNames("player"),
             frameRate: 20,
             repeat: -1
         });
