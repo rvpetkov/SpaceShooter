@@ -1,5 +1,4 @@
 import { BaseActor } from "./BaseActor";
-import { GameApp } from "../GameApp";
 import { CustomKeyboardInput } from "../utils/CustomKeyboardInput";
 
 class Player extends BaseActor {
@@ -30,26 +29,28 @@ class Player extends BaseActor {
 
         this.anims.play("player_idle");
 
+        this.setCollideWorldBounds(true);
+
         this.keys = new CustomKeyboardInput(this.scene);
     }
 
-    public update(time: number, delta: number): void {
-        // console.log(time, delta);
-        let deltaTime: number = delta / 1000;
-        this.handleKeyboardInput(deltaTime);
+    public update(): void {
+        this.handleKeyboardInput();
     }
 
-    private handleKeyboardInput(deltaTime: number): void {
-        if ((this.keys.up.isDown || this.keys.w.isDown) && this.y > this.height / 2) {
-            this.y -= this.movementSpeed * deltaTime;
-        } else if ((this.keys.down.isDown || this.keys.s.isDown) && this.y < (<number>GameApp.gameConfig.height) - this.height / 2) {
-            this.y += this.movementSpeed * deltaTime;
+    private handleKeyboardInput(): void {
+        this.setVelocity(0, 0);
+
+        if (this.keys.up.isDown || this.keys.w.isDown) {
+            this.setVelocityY(-this.movementSpeed);
+        } else if (this.keys.down.isDown || this.keys.s.isDown) {
+            this.setVelocityY(this.movementSpeed);
         }
 
-        if ((this.keys.left.isDown || this.keys.a.isDown) && this.x > this.width / 2) {
-            this.x -= this.movementSpeed * deltaTime;
-        } else if ((this.keys.right.isDown || this.keys.d.isDown) && this.x < (<number>GameApp.gameConfig.width) - this.width / 2) {
-            this.x += this.movementSpeed * deltaTime;
+        if (this.keys.left.isDown || this.keys.a.isDown) {
+            this.setVelocityX(-this.movementSpeed);
+        } else if (this.keys.right.isDown || this.keys.d.isDown) {
+            this.setVelocityX(this.movementSpeed);
         }
 
         if (this.keys.space.isDown) {
