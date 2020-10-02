@@ -30,6 +30,7 @@ class EnemySphere extends Enemy {
         }
 
         this.anims.play("sphere_idle");
+        this.body.setSize(this.width, this.height);
     }
 
     public startAttacking(): void {

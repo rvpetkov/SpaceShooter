@@ -30,6 +30,7 @@ class Player extends BaseActor {
         this.anims.play("player_idle");
 
         this.setCollideWorldBounds(true);
+        this.body.setSize(this.width, this.height / 2);         //custom collision box to make the game experience better
 
         this.keys = new CustomKeyboardInput(this.scene);
     }

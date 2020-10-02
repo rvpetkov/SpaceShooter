@@ -28,6 +28,7 @@ class EnemyCone extends Enemy {
         }
 
         this.anims.play("cone_idle");
+        this.body.setSize(this.width, this.height);
     }
 
     public startAttacking(): void {

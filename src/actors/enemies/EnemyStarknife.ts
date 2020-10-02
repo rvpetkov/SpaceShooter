@@ -32,6 +32,7 @@ class EnemyStarknife extends Enemy {
         }
 
         this.anims.play("starknife_idle");
+        this.body.setSize(this.width, this.height);
     }
 
     public startAttacking(): void {
