@@ -15,19 +15,21 @@ class EnemyStarknife extends Enemy {
         this.movementSpeed = this.baseSpeed;
         this.hitPoints = this.baseHP;
 
-        this.scene.textures.addSpriteSheetFromAtlas("starknife", {
-            frameWidth: 64,
-            frameHeight: 64,
-            atlas: "spaceShooter",
-            frame: "ship_starknife"
-        } as Phaser.Types.Textures.SpriteSheetFromAtlasConfig);
-
-        this.scene.anims.create({
-            key: "starknife_idle",
-            frames: this.scene.anims.generateFrameNames("starknife"),
-            frameRate: 20,
-            repeat: -1
-        });
+        if (this.scene.textures.exists("starknife") == false) {
+            this.scene.textures.addSpriteSheetFromAtlas("starknife", {
+                frameWidth: 64,
+                frameHeight: 64,
+                atlas: "spaceShooter",
+                frame: "ship_starknife"
+            } as Phaser.Types.Textures.SpriteSheetFromAtlasConfig);
+    
+            this.scene.anims.create({
+                key: "starknife_idle",
+                frames: this.scene.anims.generateFrameNames("starknife"),
+                frameRate: 20,
+                repeat: -1
+            });
+        }
 
         this.anims.play("starknife_idle");
     }

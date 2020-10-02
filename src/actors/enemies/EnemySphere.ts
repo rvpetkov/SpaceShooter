@@ -13,19 +13,21 @@ class EnemySphere extends Enemy {
         // this.movementSpeed = this.baseSpeed;
         this.hitPoints = this.baseHP;
 
-        this.scene.textures.addSpriteSheetFromAtlas("sphere", {
-            frameWidth: 64,
-            frameHeight: 64,
-            atlas: "spaceShooter",
-            frame: "ship_sphere"
-        } as Phaser.Types.Textures.SpriteSheetFromAtlasConfig);
-
-        this.scene.anims.create({
-            key: "sphere_idle",
-            frames: this.scene.anims.generateFrameNames("sphere"),
-            frameRate: 20,
-            repeat: -1
-        });
+        if (this.scene.textures.exists("sphere") == false) {
+            this.scene.textures.addSpriteSheetFromAtlas("sphere", {
+                frameWidth: 64,
+                frameHeight: 64,
+                atlas: "spaceShooter",
+                frame: "ship_sphere"
+            } as Phaser.Types.Textures.SpriteSheetFromAtlasConfig);
+    
+            this.scene.anims.create({
+                key: "sphere_idle",
+                frames: this.scene.anims.generateFrameNames("sphere"),
+                frameRate: 20,
+                repeat: -1
+            });
+        }
 
         this.anims.play("sphere_idle");
     }

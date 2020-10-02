@@ -11,19 +11,21 @@ class EnemyCone extends Enemy {
         this.movementSpeed = this.baseSpeed;
         this.hitPoints = this.baseHP;
 
-        this.scene.textures.addSpriteSheetFromAtlas("cone", {
-            frameWidth: 64,
-            frameHeight: 64,
-            atlas: "spaceShooter",
-            frame: "ship_cone"
-        } as Phaser.Types.Textures.SpriteSheetFromAtlasConfig);
-
-        this.scene.anims.create({
-            key: "cone_idle",
-            frames: this.scene.anims.generateFrameNames("cone"),
-            frameRate: 20,
-            repeat: -1
-        });
+        if (this.scene.textures.exists("cone") == false) {
+            this.scene.textures.addSpriteSheetFromAtlas("cone", {
+                frameWidth: 64,
+                frameHeight: 64,
+                atlas: "spaceShooter",
+                frame: "ship_cone"
+            } as Phaser.Types.Textures.SpriteSheetFromAtlasConfig);
+    
+            this.scene.anims.create({
+                key: "cone_idle",
+                frames: this.scene.anims.generateFrameNames("cone"),
+                frameRate: 20,
+                repeat: -1
+            });
+        }
 
         this.anims.play("cone_idle");
     }
