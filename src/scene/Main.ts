@@ -1,5 +1,6 @@
 import { EnemyCone } from "../actors/enemies/EnemyCone";
 import { EnemySphere } from "../actors/enemies/EnemySphere";
+import { EnemyStarknife } from "../actors/enemies/EnemyStarknife";
 import { Player } from "../actors/Player";
 import { GameApp } from "../GameApp";
 import { BackgroundGraphic } from "../graphics/BackgroundGraphic";
@@ -13,9 +14,14 @@ class Main extends Phaser.Scene {
 
     private enemy1: EnemyCone;
     private enemy2: EnemySphere;
+    private enemy3: EnemyStarknife;
 
     constructor() {
         super("main");
+    }
+
+    public get playerPosition(): Phaser.Math.Vector2 {
+        return new Phaser.Math.Vector2(this.player.x, this.player.y);
     }
 
     create() {
@@ -35,6 +41,10 @@ class Main extends Phaser.Scene {
         this.enemy2 = new EnemySphere(this, 900, 200);
         this.enemy2.startAttacking();
         this.add.existing(this.enemy2);
+
+        this.enemy3 = new EnemyStarknife(this, 900, 300);
+        this.enemy3.startAttacking();
+        this.add.existing(this.enemy3);
     }
 
     update(time: number, delta: number) {
