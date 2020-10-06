@@ -1,3 +1,4 @@
+import { Enemy } from "../actors/enemies/Enemy";
 import { EnemySpawner } from "../actors/enemies/EnemySpawner";
 import { Player } from "../actors/Player";
 import { GameApp } from "../GameApp";
@@ -30,13 +31,27 @@ class Main extends Phaser.Scene {
         this.add.existing(this.player);
 
         this.enemySpawner = new EnemySpawner(this);
+
+        this.initCollisions();
+    }
+
+    private initCollisions(): void {
+        this.physics.add.collider(this.player, this.enemySpawner.allEnemies, this.onPlayerCollision, null, this);
+    }
+
+    private onPlayerCollision(player: Player, enemy: Enemy): void {
+        player.destroy(true);
+        enemy.destroy();
     }
 
     update() {
         this.background.update();
         this.foreground.update();
 
-        this.player.update();
+        if (this.player.active) {
+            this.player.update();
+        }
+
         this.enemySpawner.update();
     }
 }

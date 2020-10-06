@@ -32,6 +32,16 @@ class EnemySpawner {
                 this.spawn();
             }
         }
+
+        let i: number = 0;
+        while (i < this.enemiesArr.length) {
+            if (this.enemiesArr[i].active == false) {
+                let enemy: Enemy = this.enemiesArr.splice(i, 1)[0];
+                enemy.destroy();
+            } else {
+                i++;
+            }
+        }
     }
 
     public spawn(): void {
