@@ -37,6 +37,8 @@ class Player extends BaseActor {
 
     public update(): void {
         this.handleKeyboardInput();
+
+        this.updateWeapon();
     }
 
     private handleKeyboardInput(): void {
