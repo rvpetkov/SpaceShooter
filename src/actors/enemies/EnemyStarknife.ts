@@ -140,6 +140,16 @@ class EnemyStarknife extends Enemy {
     public fire(): void {
         console.log("Starknife - KA'BOOM!");
     }
+
+    public destroy(): void {
+        if (this.movementTween != null) {
+            this.movementTween.stop();
+            this.scene.tweens.remove(this.movementTween);
+            this.movementTween = null;
+        }
+
+        super.destroy();
+    }
 }
 
 export { EnemyStarknife }

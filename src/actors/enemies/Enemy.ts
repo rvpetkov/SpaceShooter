@@ -9,6 +9,16 @@ abstract class Enemy extends BaseActor {
 
     public abstract startAttacking(): void;
     public abstract stopAttacking(): void;
+
+    public destroy(): void {
+        if (this.attackTimer != null) {
+            this.attackTimer.remove(false);
+            this.attackTimer.destroy();
+            this.attackTimer = null;
+        }
+
+        super.destroy(true);
+    }
 }
 
 export { Enemy }

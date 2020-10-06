@@ -6,6 +6,7 @@ class EnemySphere extends Enemy {
     private readonly shotDelay: number = 1200;
 
     private movementTween: Phaser.Tweens.Tween;
+    private burstFireTimer: Phaser.Time.TimerEvent;
 
     constructor(scene: Phaser.Scene, x: number, y: number) {
         super(scene, x, y, "ship_sphere");
@@ -76,7 +77,7 @@ class EnemySphere extends Enemy {
     }
 
     private burstFire(): void {
-        let timer = this.scene.time.addEvent({
+        this.burstFireTimer = this.scene.time.addEvent({
             delay: 100,
             repeat: 2,          // the initial tween + 2 more = 3 in total
             callback: this.fire,
@@ -86,6 +87,21 @@ class EnemySphere extends Enemy {
 
     public fire(): void {
         console.log("Sphere - PEW PEW PEW");
+    }
+
+    public destroy(): void {
+        if (this.movementTween != null) {
+            this.movementTween.stop();
+            this.scene.tweens.remove(this.movementTween);
+            this.movementTween = null;
+        }
+
+        if (this.burstFireTimer != null) {
+            this.burstFireTimer.remove();
+            this.burstFireTimer.destroy();
+        }
+
+        super.destroy();
     }
 }
 
