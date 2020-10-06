@@ -4,6 +4,7 @@ import { Player } from "../actors/Player";
 import { GameApp } from "../GameApp";
 import { BackgroundGraphic } from "../graphics/BackgroundGraphic";
 import { ForegroundGraphic } from "../graphics/ForegroundGraphics";
+import { Bullet } from "../weapons/bullets/Bullet";
 
 class Main extends Phaser.Scene {
     private background: BackgroundGraphic;
@@ -37,10 +38,16 @@ class Main extends Phaser.Scene {
 
     private initCollisions(): void {
         this.physics.add.collider(this.player, this.enemySpawner.allEnemies, this.onPlayerCollision, null, this);
+        this.physics.add.collider(this.player.getWeapon(), this.enemySpawner.allEnemies, this.onPlayerBulletCollision, null, this);
     }
 
     private onPlayerCollision(player: Player, enemy: Enemy): void {
         player.destroy();
+        enemy.destroy();
+    }
+
+    private onPlayerBulletCollision(bullet: Bullet, enemy: Enemy): void {        
+        bullet.destroy(true);
         enemy.destroy();
     }
 
