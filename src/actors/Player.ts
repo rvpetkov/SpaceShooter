@@ -1,5 +1,7 @@
 import { BaseActor } from "./BaseActor";
 import { CustomKeyboardInput } from "../utils/CustomKeyboardInput";
+import { SingleLaserWeapon } from "../weapons/SingleLaserBullet";
+import { DirectionType } from "../utils/DirectionType";
 
 class Player extends BaseActor {
     private readonly baseSpeed: number = 300;      //INFO: px per second. Explain this and the fps
@@ -32,6 +34,8 @@ class Player extends BaseActor {
         this.setCollideWorldBounds(true);
         this.body.setSize(this.width, this.height / 2);         //custom collision box to make the game experience better
 
+        this.setWeapon(new SingleLaserWeapon(this.scene));
+
         this.keys = new CustomKeyboardInput(this.scene);
     }
 
@@ -56,8 +60,8 @@ class Player extends BaseActor {
             this.setVelocityX(this.movementSpeed);
         }
 
-        if (this.keys.space.isDown) {
-            console.log("BOOM!");
+        if (this.scene.input.keyboard.checkDown(this.keys.space, this.weapon.getFireRate())) {
+            this.weapon.shoot(DirectionType.RIGHT, this.x + 30, this.y);
         }
     }
 }
