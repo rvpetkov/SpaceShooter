@@ -29,6 +29,10 @@ abstract class Weapon extends Phaser.Physics.Arcade.Group {
             }
         });
     }
+
+    public destroy(): void {
+        super.destroy();
+    }
 }
 
 export { Weapon }

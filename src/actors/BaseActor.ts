@@ -46,7 +46,7 @@ abstract class BaseActor extends Phaser.Physics.Arcade.Sprite {
 
     public destroy(): void {
         if (this.weapon != null) {
-            this.weapon.destroy(true);
+            this.weapon.destroy();
             this.weapon = null;
         }
 
