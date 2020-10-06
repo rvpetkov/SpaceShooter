@@ -74,8 +74,11 @@ class EnemySpawner {
                 x: 950,
                 ease: Phaser.Math.Easing.Quadratic.Out,
                 duration: 800,
-                onComplete: e.startAttacking,
-                onCompleteScope: e
+                onComplete: () => {
+                    if (e.active) {
+                        e.startAttacking();
+                    }
+                }
             });
 
             y += verticalStep;
@@ -97,8 +100,11 @@ class EnemySpawner {
                 x: x,
                 ease: Phaser.Math.Easing.Quadratic.Out,
                 duration: 800,
-                onComplete: e.startAttacking,
-                onCompleteScope: e
+                onComplete: () => {
+                    if (e.active) {
+                        e.startAttacking();
+                    }
+                }
             });
 
             y += step;
@@ -121,8 +127,12 @@ class EnemySpawner {
             ease: Phaser.Math.Easing.Quadratic.Out,
             duration: 800,
             onComplete: () => {
-                e1.startAttacking();
-                e2.startAttacking();
+                if (e1.active) {
+                    e1.startAttacking();
+                }
+                if (e2.active) {
+                    e2.startAttacking();
+                }
             }
         });
     }
