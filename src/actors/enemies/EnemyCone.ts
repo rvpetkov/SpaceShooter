@@ -1,3 +1,4 @@
+import { SinglePhotonWeapon } from "../../weapons/SinglePhotonWeapon";
 import { Enemy } from "./Enemy";
 
 class EnemyCone extends Enemy {
@@ -29,6 +30,8 @@ class EnemyCone extends Enemy {
 
         this.anims.play("cone_idle");
         this.body.setSize(this.width, this.height);
+
+        this.setWeapon(new SinglePhotonWeapon(this.scene));
     }
 
     public startAttacking(): void {
@@ -52,10 +55,6 @@ class EnemyCone extends Enemy {
         if (this.attackTimer != null) {
             this.attackTimer.paused = true;
         }
-    }
-
-    private fire(): void {
-        console.log("Cone FIRE!");
     }
 }
 

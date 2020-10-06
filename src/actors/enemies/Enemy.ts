@@ -1,3 +1,4 @@
+import { DirectionType } from "../../utils/DirectionType";
 import { BaseActor } from "../BaseActor";
 
 abstract class Enemy extends BaseActor {
@@ -9,6 +10,10 @@ abstract class Enemy extends BaseActor {
 
     public abstract startAttacking(): void;
     public abstract stopAttacking(): void;
+
+    public fire(): void {
+        super.shootWeapon(DirectionType.LEFT, this.x - 30, this.y);
+    }
 
     public destroy(): void {
         if (this.attackTimer != null) {

@@ -1,3 +1,4 @@
+import { SingleLaserWeapon } from "../../weapons/SingleLaserBullet";
 import { Enemy } from "./Enemy";
 
 class EnemySphere extends Enemy {
@@ -32,6 +33,8 @@ class EnemySphere extends Enemy {
 
         this.anims.play("sphere_idle");
         this.body.setSize(this.width, this.height);
+
+        this.setWeapon(new SingleLaserWeapon(this.scene));
     }
 
     public startAttacking(): void {
@@ -83,10 +86,6 @@ class EnemySphere extends Enemy {
             callback: this.fire,
             callbackScope: this
         });
-    }
-
-    public fire(): void {
-        console.log("Sphere - PEW PEW PEW");
     }
 
     public destroy(): void {

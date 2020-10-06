@@ -1,4 +1,5 @@
 import { Main } from "../../scene/Main";
+import { SingleBigRedBulletWeapon } from "../../weapons/SingleBigRedBulletWeapon";
 import { Enemy } from "./Enemy";
 
 class EnemyStarknife extends Enemy {
@@ -33,6 +34,8 @@ class EnemyStarknife extends Enemy {
 
         this.anims.play("starknife_idle");
         this.body.setSize(this.width, this.height);
+
+        this.setWeapon(new SingleBigRedBulletWeapon(this.scene));
     }
 
     public startAttacking(): void {
@@ -135,10 +138,6 @@ class EnemyStarknife extends Enemy {
                 }
             }
         });
-    }
-
-    public fire(): void {
-        console.log("Starknife - KA'BOOM!");
     }
 
     public destroy(): void {
