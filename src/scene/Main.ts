@@ -30,7 +30,6 @@ class Main extends Phaser.Scene {
         this.add.existing(this.player);
 
         this.enemySpawner = new EnemySpawner(this);
-        this.add.existing(this.enemySpawner);
     }
 
     update() {
