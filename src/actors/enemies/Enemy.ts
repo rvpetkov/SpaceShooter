@@ -17,7 +17,7 @@ abstract class Enemy extends BaseActor {
             this.attackTimer = null;
         }
 
-        super.destroy(true);
+        super.destroy();
     }
 }
 

@@ -40,7 +40,7 @@ class Main extends Phaser.Scene {
     }
 
     private onPlayerCollision(player: Player, enemy: Enemy): void {
-        player.destroy(true);
+        player.destroy();
         enemy.destroy();
     }
 
