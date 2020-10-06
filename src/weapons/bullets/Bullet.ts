@@ -9,7 +9,7 @@ abstract class Bullet extends Phaser.Physics.Arcade.Sprite {
         this.speed = 0;
     }
 
-    public fire(direction: DirectionType, startX: number, startY: number): void {
+    public fire(direction: DirectionType, startX: number, startY: number, velocityY: number = 0): void {
         if (direction == DirectionType.LEFT) {
             this.angle = 180;
         }
@@ -19,7 +19,7 @@ abstract class Bullet extends Phaser.Physics.Arcade.Sprite {
         this.setActive(true);
         this.setVisible(true);
 
-        this.setVelocity(this.speed * direction, 0);
+        this.setVelocity(this.speed * direction, velocityY);
     }
 }
 

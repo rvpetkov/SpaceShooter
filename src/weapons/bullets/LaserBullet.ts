@@ -8,10 +8,10 @@ class LaserBullet extends Bullet {
         this.speed = 600;
     }
     
-    public fire(direction: DirectionType, startX: number, startY: number): void {
+    public fire(direction: DirectionType, startX: number, startY: number, velocityY?: number): void {
         this.setSize(40, 20);
 
-        super.fire(direction, startX, startY);
+        super.fire(direction, startX, startY, velocityY);
     }
 }
 
