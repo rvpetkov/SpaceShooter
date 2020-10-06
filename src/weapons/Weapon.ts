@@ -10,7 +10,8 @@ abstract class Weapon extends Phaser.Physics.Arcade.Group {
             key: "spaceShooterUI",
             classType: classType,
             active: false,
-            visible: false
+            visible: false,
+            setXY: {x : 0, y: -100}
         });
     }
 
@@ -24,6 +25,7 @@ abstract class Weapon extends Phaser.Physics.Arcade.Group {
         this.children.iterate((bullet: Bullet) => {
             if (bullet.x < 0 || bullet.x > 1024) {
                 this.killAndHide(bullet);
+                bullet.body.reset(0, -100);
             }
         });
     }
