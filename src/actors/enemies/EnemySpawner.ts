@@ -23,6 +23,10 @@ class EnemySpawner {
         return this.enemiesArr;
     }
 
+    public getAllEnemyWeaponGroups(): Phaser.Physics.Arcade.Group[] {
+        return this.enemiesArr.map((enemy) => enemy.getWeapon());
+    }
+
     public update(): void {
         if (this.waveCount >= this.maxWaveCount) {
             //TODO: end of level

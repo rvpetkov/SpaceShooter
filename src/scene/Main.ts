@@ -51,6 +51,11 @@ class Main extends Phaser.Scene {
         enemy.destroy();
     }
 
+    private onEnemyBulletCollision(bullet: Bullet, player: Player): void {
+        bullet.destroy(true);
+        player.destroy();
+    }
+
     update() {
         this.background.update();
         this.foreground.update();
@@ -60,6 +65,16 @@ class Main extends Phaser.Scene {
         }
 
         this.enemySpawner.update();
+
+        let allEnemyWeaponGroups: Phaser.Physics.Arcade.Group[] = this.enemySpawner.getAllEnemyWeaponGroups();
+        for (let enemyBullets of allEnemyWeaponGroups) {
+            this.physics.collide(enemyBullets, this.player, this.onEnemyBulletCollision, null, this);
+        }
+
+        //TODO: remove this - it's just for testing
+        if (!this.player.active) {
+            this.scene.restart();
+        }
     }
 }
 
