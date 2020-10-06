@@ -37,8 +37,8 @@ class Main extends Phaser.Scene {
     }
 
     private initCollisions(): void {
-        this.physics.add.collider(this.player, this.enemySpawner.allEnemies, this.onPlayerCollision, null, this);
         this.physics.add.collider(this.player.getWeapon(), this.enemySpawner.allEnemies, this.onPlayerBulletCollision, null, this);
+        this.physics.add.collider(this.player, this.enemySpawner.allEnemies, this.onPlayerCollision, null, this);
     }
 
     private onPlayerCollision(player: Player, enemy: Enemy): void {
