@@ -42,6 +42,7 @@ class Preload extends Phaser.Scene {
         this.load.image("background", "assets/images/background.png");
         this.load.atlas("foreground", "assets/images/foreground.png", "assets/images/foreground.json");
         this.load.atlas("spaceShooter", "assets/images/spaceShooter.png", "assets/images/spaceShooter.json");
+        this.load.atlas("UI", "assets/images/UI.png", "assets/images/UI.json");
 
         //audio
         this.load.audio("laser1", ["assets/audio/laser1.ogg", "assets/audio/laser1.mp3", "assets/audio/laser1.m4a"]);
