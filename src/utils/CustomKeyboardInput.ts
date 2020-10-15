@@ -10,7 +10,7 @@ class CustomKeyboardInput {
     public d?: Phaser.Input.Keyboard.Key;
 
     public space?: Phaser.Input.Keyboard.Key;
-    // public escape?: Phaser.Input.Keyboard.Key;
+    public escape?: Phaser.Input.Keyboard.Key;
     // public ctrl?: Phaser.Input.Keyboard.Key;
     // public shift?: Phaser.Input.Keyboard.Key;
 
@@ -26,7 +26,7 @@ class CustomKeyboardInput {
         this.d = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
 
         this.space = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
-        // this.escape = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
+        this.escape = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
         // this.ctrl = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.CTRL);
         // this.shift = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SHIFT);
     }

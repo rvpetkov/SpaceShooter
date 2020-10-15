@@ -4,8 +4,10 @@ import { SingleLaserWeapon } from "../weapons/SingleLaserBullet";
 import { DirectionType } from "../utils/DirectionType";
 
 class Player extends BaseActor {
-    private readonly baseSpeed: number = 300;      //INFO: px per second. Explain this and the fps
+    private readonly baseSpeed: number = 300;
     private readonly baseHP: number = 3;
+
+    public emitter: Phaser.Events.EventEmitter;
 
     private keys: CustomKeyboardInput;
 
@@ -38,7 +40,10 @@ class Player extends BaseActor {
 
         this.setWeapon(new SingleLaserWeapon(this.scene));
 
+        this.emitter = new Phaser.Events.EventEmitter();
+
         this.keys = new CustomKeyboardInput(this.scene);
+        this.keys.escape.on("down", this.onEscPress, this);
     }
 
     public update(): void {
@@ -65,6 +70,10 @@ class Player extends BaseActor {
         if (this.scene.input.keyboard.checkDown(this.keys.space, this.weapon.getFireRate())) {
             this.weapon.shoot(DirectionType.RIGHT, this.x + 30, this.y);
         }
+    }
+
+    private onEscPress(): void {
+        this.emitter.emit("escPressed");
     }
 }
 

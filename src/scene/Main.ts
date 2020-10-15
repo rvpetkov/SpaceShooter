@@ -29,6 +29,7 @@ class Main extends Phaser.Scene {
         this.add.existing(this.foreground);
 
         this.player = new Player(this, 60, <number>(GameApp.gameConfig.height) / 2);
+        this.player.emitter.on("escPressed", this.onEscPressed, this);
         this.add.existing(this.player);
 
         this.enemySpawner = new EnemySpawner(this);
@@ -54,6 +55,11 @@ class Main extends Phaser.Scene {
     private onEnemyBulletCollision(bullet: Bullet, player: Player): void {
         bullet.destroy(true);
         player.destroy();
+    }
+
+    private onEscPressed(): void {
+        this.scene.pause();
+        this.scene.launch("ingameMenu");
     }
 
     update() {
