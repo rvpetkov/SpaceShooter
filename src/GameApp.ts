@@ -4,6 +4,7 @@ import { Preload } from './scene/Preload';
 import { SplashScene } from './scene/SplashScene';
 import { Main } from './scene/Main';
 import { MainMenu } from './scene/MainMenu';
+import { Options } from './scene/Options';
 
 class GameApp extends Phaser.Game {
     public static gameConfig: Phaser.Types.Core.GameConfig = null;
@@ -24,7 +25,7 @@ class GameApp extends Phaser.Game {
                         debug: true
                     }
                 },
-                scene: [Boot, Preload, SplashScene, MainMenu, Main]
+                scene: [Boot, Preload, SplashScene, MainMenu, Options, Main]
             };
         }
 

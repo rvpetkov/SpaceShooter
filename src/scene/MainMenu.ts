@@ -37,7 +37,8 @@ class MainMenu extends Phaser.Scene {
     }
 
     private onOptions(): void {
-
+        this.scene.pause();
+        this.scene.launch("options");
     }
 
     private onExit(): void {
