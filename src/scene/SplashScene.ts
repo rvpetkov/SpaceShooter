@@ -30,7 +30,7 @@ class SplashScene extends Phaser.Scene {
 
     private nextState(): void {
         let timer: Phaser.Time.TimerEvent = this.scene.scene.time.delayedCall(600, () => {
-            this.scene.start("main");
+            this.scene.start("mainMenu");
         }, null, this);
     }
 }
